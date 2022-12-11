@@ -6,6 +6,15 @@ Create Redirectors is a plugin for the very specific use of manually creating as
 
 This can be especially useful when you change the location of an asset that a lot of other assets where pointing to. By creating a manual redirector, you remove the necessity to checkout the assets referencing the asset you moved, reducing the amount of conflicts in you source control system.
 
+### WTF are redirectors ?
+
+When moving an asset from a folder to another, some assets may be referencing it. Because Unreal asset reference system is Path based, it means that every assets referecing this asset will have to change the path they know to this asset. This means that each asset referencing the asset that moved will now be marked as modified too, which can lead to hundreds of files to checkout for a single asset moving.
+
+When Unreal cannot easily change one of these references, it leaves a redirector file at the old location of the file you just moved. By doing so, Unreal makes sure that if ever an asset is still refering the old path, the freshly created redirector will give it the new location of this asset.
+
+The user can fix up the redirectors whenever they want by right clicking on a folder and select "Fix up redirectors in folder". This is gonna make sure that no one is referencing the old path anymore and delete the redirectors files.
+
+Why didn't they just used a GUID based reference system ? Well I don't know so I'll just keep on creating redirectors myself...
 
 ## Install notes
 
